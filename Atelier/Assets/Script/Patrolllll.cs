@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 public class Patrolllll : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform Chevalier;
+    //[SerializeField] Transform Chevalier;
     [SerializeField] LayerMask layerMask;
     [SerializeField] Vector3 PointA;
     [SerializeField] Vector3 PointB;
@@ -16,7 +16,7 @@ public class Patrolllll : MonoBehaviour
     void Start()
     {
         StartCoroutine(patrollll());
-        StartCoroutine(ChevalierDetection());
+        //StartCoroutine(ChevalierDetection());
     }
 
     IEnumerator patrollll()
@@ -39,30 +39,30 @@ public class Patrolllll : MonoBehaviour
             yield return 0;
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
     }
 
-    IEnumerator ChevalierDetection()
-    {
-        while (true)
-        {
-            if(Physics.Raycast(transform.position, (Chevalier.position - transform.position), out RaycastHit hit,10f,layerMask))
-            {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
-                {
-                    print("Chevalier detected");
-                }
-                else
-                {
-                    print("Wall detected");
-                }
-            }
-            else
-            {
-                print("Nothing detected");
-            }
-            yield return null;
+    //IEnumerator ChevalierDetection()
+    //{
+    //    while (true)
+    //    {
+    //        if(Physics.Raycast(transform.position, (Chevalier.position - transform.position), out RaycastHit hit,10f,layerMask))
+    //        {
+    //            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
+    //            {
+    //                print("Chevalier detected");
+    //            }
+    //            else
+    //            {
+    //                print("Wall detected");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            print("Nothing detected");
+    //        }
+    //        yield return null;
 
-        }
-    }
+    //    }
+    //}
 }
