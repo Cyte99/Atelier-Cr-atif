@@ -41,14 +41,14 @@ public class Player_Mouvement : MonoBehaviour
         HandleMovement();
         HandleRotation();
 
-        //groundedPlayer = controller.isGrounded;
+        groundedPlayer = controller.isGrounded;
 
-        //if (groundedPlayer)
-        //{
-        //    // Slight downward velocity to keep grounded stable
-        //    if (playerVelocity.y < -2f)
-        //        playerVelocity.y = -2f;
-        //}
+        if (groundedPlayer)
+        {
+             //Slight downward velocity to keep grounded stable
+            if (playerVelocity.y < -2f)
+                playerVelocity.y = -2f;
+        }
 
         //// Read input
         //Vector2 input = moveAction.action.ReadValue<Vector2>();
@@ -59,13 +59,13 @@ public class Player_Mouvement : MonoBehaviour
         //    transform.forward = move;
 
         //// Jump using WasPressedThisFrame()
-        //if (groundedPlayer && jumpAction.action.WasPressedThisFrame())
-        //{
-        //    playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
-        //}
+        if (groundedPlayer && jumpAction.action.WasPressedThisFrame())
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+        }
 
         //// Apply gravity
-        //playerVelocity.y += gravityValue * Time.deltaTime;
+        playerVelocity.y += gravityValue * Time.deltaTime;
 
         //// Move
         //Vector3 finalMove = move * playerSpeed + Vector3.up * playerVelocity.y;
