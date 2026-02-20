@@ -6,22 +6,23 @@ public class Player_Mouvement : MonoBehaviour
 {
     [SerializeField]private float playerSpeed = 5.0f;
     [SerializeField] private float jumpHeight = 1.5f;
-    private float gravityValue = -9.81f;
+    [SerializeField] private float gravityValue = -9.81f;
 
     public CharacterController controller;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    [SerializeField] private bool groundedPlayer;
 
     [Header("Input Actions")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
-    private float mouseSensitivity = 2f;
-    private float upDownRange = 80f;
 
     [SerializeField] private Camera mainCamera;
-    private float verticalRotation;
-    private string MouseXInput = "Mouse X";
-    private string MouseYInput = "Mouse Y";
+    [SerializeField] private Transform headPos;
+    [SerializeField] private float mouseSensitivity = 3f;
+    [SerializeField] private float verticalRotation;
+    [SerializeField] private string MouseXInput = "Mouse X";
+    [SerializeField] private string MouseYInput = "Mouse Y";
+    [SerializeField] private float upDownRange = 80f;
 
     private void OnEnable()
     {
@@ -87,12 +88,25 @@ public class Player_Mouvement : MonoBehaviour
     void HandleRotation()
     {
 
+        //float mouseXRotation = Input.GetAxis(MouseXInput) * mouseSensitivity;
+        //transform.Rotate(0, mouseXRotation, 0);
+
+        //verticalRotation -= Input.GetAxis(MouseYInput) * mouseSensitivity;
+        //verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+        //mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
         float mouseXRotation = Input.GetAxis(MouseXInput) * mouseSensitivity;
+        float mouseYRotation = Input.GetAxis(MouseYInput) * mouseSensitivity;
+
         transform.Rotate(0, mouseXRotation, 0);
 
-        verticalRotation -= Input.GetAxis(MouseYInput) * mouseSensitivity;
+        verticalRotation -= mouseYRotation;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
-        mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+
+        Vector3 pivotEuler=headPos.eulerAngles;
+        headPos.eulerAngles = new Vector3(verticalRotation, pivotEuler.y, 0f);
+
+        transform.eulerAngles = new Vector3(0f,headPos.eulerAngles.y, 0f);
     }
     
 
