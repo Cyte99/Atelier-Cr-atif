@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
-using System.Linq.Expressions;
 
 public class Patrolllll : MonoBehaviour
 {
@@ -12,21 +12,22 @@ public class Patrolllll : MonoBehaviour
     [SerializeField] Vector3 PointB;
     [SerializeField] Vector3 PointC;
     [SerializeField] Vector3 PointD;
+    public List<Transform> patrolPoints;
 
     void Start()
     {
-        StartCoroutine(patrollll());
+        StartCoroutine(Patrollll());
         //StartCoroutine(ChevalierDetection());
     }
 
-    IEnumerator patrollll()
+    IEnumerator Patrollll()
     {
         while (true)
         {
-            yield return Goto(PointA);
-            yield return Goto(PointB);
-            yield return Goto(PointC);
-            yield return Goto(PointD);
+            for (int i = 0; i < patrolPoints.Count; i++)
+            {
+                yield return Goto(patrolPoints[i].position);
+            }
         }
     }
 
@@ -34,7 +35,7 @@ public class Patrolllll : MonoBehaviour
     {
         agent.SetDestination(destination);
 
-        while(Vector3.Distance(transform.position, destination) > 1f)
+        while (Vector3.Distance(transform.position, destination) > 1f)
         {
             yield return 0;
         }
