@@ -458,9 +458,9 @@ PrefabInstance:
       value: Chevalier
       objectReference: {fileID: 0}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
-      propertyPath: controller
+      propertyPath: headPos
       value: 
-      objectReference: {fileID: 2877839506541755861}
+      objectReference: {fileID: 2699414837763385048}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: mainCamera
       value: 
@@ -477,11 +477,6 @@ PrefabInstance:
       addedObject: {fileID: 2699414837763385048}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
---- !u!143 &2877839506541755861 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: -3585921819245663420, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
-  m_PrefabInstance: {fileID: 7623499958029358737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8858308765935704485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1378968114675846964, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}

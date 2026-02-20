@@ -129,9 +129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerSpeed: 5
   jumpHeight: 1.5
-  controller: {fileID: 0}
+  gravityValue: -9.81
+  controller: {fileID: -3585921819245663420}
+  groundedPlayer: 0
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  mainCamera: {fileID: 0}
+  headPos: {fileID: 0}
+  mouseSensitivity: 3
+  verticalRotation: 0
+  MouseXInput: Mouse X
+  MouseYInput: Mouse Y
+  upDownRange: 80
 --- !u!143 &-3585921819245663420
 CharacterController:
   m_ObjectHideFlags: 0
