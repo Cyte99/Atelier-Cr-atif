@@ -134,8 +134,8 @@ MonoBehaviour:
   groundedPlayer: 0
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  mainCamera: {fileID: 0}
-  headPos: {fileID: 0}
+  mainCamera: {fileID: 8712518852567608786, guid: 55b2344e905645c4d8657852f14e1fbe, type: 3}
+  headPos: {fileID: 1757583954589216492, guid: da2b3b3cd4d7e7543b18f69e47b67a61, type: 3}
   mouseSensitivity: 3
   verticalRotation: 0
   MouseXInput: Mouse X
