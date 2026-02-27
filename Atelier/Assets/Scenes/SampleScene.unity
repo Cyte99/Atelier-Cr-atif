@@ -46023,6 +46023,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1265466789}
+    - target: {fileID: 2205727669894381078, guid: 6e03cbd4604787c48935eb6689fac110, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3dae448d15410b64888cae03208abe52, type: 2}
     - target: {fileID: 4985758948265792128, guid: 6e03cbd4604787c48935eb6689fac110, type: 3}
       propertyPath: m_Name
       value: Porte
