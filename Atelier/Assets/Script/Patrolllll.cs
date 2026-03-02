@@ -5,63 +5,147 @@ using UnityEngine.AI;
 
 public class Patrolllll : MonoBehaviour
 {
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform Chevalier;
-    [SerializeField] LayerMask layerMask;
-    [SerializeField] public List<Transform> patrolPoints;
+    [Header("References")]
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Transform Chevalier;
 
-    void Start()
+    [Header("Patrol")]
+    [SerializeField] private List<Transform> patrolPoints = new List<Transform>();
+    [SerializeField] private float pointReachDistance = 1f;
+    [SerializeField] private float waitAtPoint = 2f;
+
+    [Header("Detection")]
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float viewDistance = 10f;
+    [SerializeField] private float halfAngle = 45f;
+    [SerializeField] private float eyeHeight = 1.6f;
+    [SerializeField] private float loseSightTime = 1.5f;   // time before returning to patrol
+
+    private bool chasing = false;
+    private float lastSeenTime = -999f;
+    private int patrolIndex = 0;
+
+    [Header("Game Over")]
+    [SerializeField] private float killDistance = 1.5f;
+    [SerializeField] private GameObject missionFailedPanel;
+    private bool missionFailed = false;
+
+
+    private void Awake()
     {
-        StartCoroutine(Patrollll());
-        StartCoroutine(ChevalierDetection());
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
 
-    IEnumerator Patrollll()
+    private void Start()
+    {
+        StartCoroutine(BrainLoop());
+    }
+
+    IEnumerator BrainLoop()
     {
         while (true)
         {
-            for (int i = 0; i < patrolPoints.Count; i++)
+            bool seesPlayer = CanSeeChevalier();
+
+            if (seesPlayer)
             {
-                yield return Goto(patrolPoints[i].position);
+                chasing = true;
+                lastSeenTime = Time.time;
             }
-        }
-    }
 
-    IEnumerator Goto(Vector3 destination)
-    {
-        agent.SetDestination(destination);
-
-        while (Vector3.Distance(transform.position, destination) > 1f)
-        {
-            yield return 0;
-        }
-
-        yield return new WaitForSeconds(2f);
-    }
-
-    IEnumerator ChevalierDetection()
-    {
-        float viewDistance = 10f;
-        float halfAngle = 15f;
-        while (true)
-        {
-            if (Physics.Raycast(transform.position, (Chevalier.position - transform.position), out RaycastHit hit, 10f, layerMask))
+            if (chasing)
             {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Character"))
+                if (Chevalier != null)
                 {
-                    print("Chevalier detected");
+                    agent.SetDestination(Chevalier.position);
+
+                    float distance = Vector3.Distance(transform.position, Chevalier.position);
+                    if (distance <= killDistance && !missionFailed)
+                    {
+                        TriggerMissionFailed();
+                    }
                 }
-                else
+
+                if (Time.time - lastSeenTime > loseSightTime)
                 {
-                    print("Wall detected");
+                    chasing = false;
                 }
+
+                yield return null;
             }
             else
             {
-                print("Nothing detected");
-            }
-            yield return null;
+                if (patrolPoints == null || patrolPoints.Count == 0)
+                {
+                    yield return null;
+                    continue;
+                }
 
+                Vector3 dest = patrolPoints[patrolIndex].position;
+                agent.SetDestination(dest);
+
+                while (!chasing && Vector3.Distance(transform.position, dest) > pointReachDistance)
+                {
+                    if (CanSeeChevalier())
+                    {
+                        chasing = true;
+                        lastSeenTime = Time.time;
+                        break;
+                    }
+                    yield return null;
+                }
+
+                if (!chasing)
+                {
+                    yield return new WaitForSeconds(waitAtPoint);
+                    patrolIndex = (patrolIndex + 1) % patrolPoints.Count;
+                }
+            }
         }
     }
+
+    private bool CanSeeChevalier()
+    {
+        if (Chevalier == null) return false;
+
+        Vector3 origin = transform.position + Vector3.up * eyeHeight;
+        Vector3 target = Chevalier.position + Vector3.up * 1.0f;
+        Vector3 dir = (target - origin).normalized;
+
+        // Forward based on movement direction
+        Vector3 forward = agent.desiredVelocity.sqrMagnitude > 0.01f
+            ? agent.desiredVelocity.normalized
+            : transform.forward;
+
+        // FOV cone check
+        float angle = Vector3.Angle(forward, dir);
+        if (angle > halfAngle) return false;
+
+        // Debug rays 
+        Debug.DrawRay(origin, forward * 2f, Color.cyan);
+        Debug.DrawRay(origin, dir * viewDistance, Color.yellow);
+
+        // Line of sight check
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, viewDistance, layerMask, QueryTriggerInteraction.Ignore))
+        {
+            return hit.transform == Chevalier || hit.transform.IsChildOf(Chevalier);
+        }
+
+        return false;
+    }
+
+    private void TriggerMissionFailed()
+    {
+        missionFailed = true;
+
+        Debug.Log("MISSION FAILED");
+
+        if (missionFailedPanel != null)
+            missionFailedPanel.SetActive(true);
+
+        agent.isStopped = true;
+
+        Time.timeScale = 0f; // freeze game
+    }
 }
+
