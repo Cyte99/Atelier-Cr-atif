@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PillarEye : MonoBehaviour
 {
-    [SerializeField] private Transform eyeTransform;  // the "eye"
+    [SerializeField] private Transform eyeTransform;  // the "eyes"
     [SerializeField] private Transform centerPoint;   // object in the middle
-    [SerializeField] private float alignmentThreshold = 10f; // degrees tolerance
+    [SerializeField] private float alignmentThreshold = 10f; 
 
     public bool IsAligned()
     {

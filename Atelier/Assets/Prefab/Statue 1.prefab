@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4160660146047556816}
   - component: {fileID: 5689836992896153633}
   - component: {fileID: 254567653121742803}
+  - component: {fileID: 5900457343408185958}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -111,6 +112,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.99999994, y: 1, z: 1}
   m_Center: {x: -0.000003814697, y: 0, z: 0}
+--- !u!114 &5900457343408185958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707492790189312911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881f0146143c7054ca3693a000efde5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PillarEye
+  eyeTransform: {fileID: 487405519172323607}
+  centerPoint: {fileID: 7367209769194181816, guid: e442bdc79ed9d0948a716dbe8ba0a975, type: 3}
+  alignmentThreshold: 10
 --- !u!1 &3091037317029981272
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +141,7 @@ GameObject:
   - component: {fileID: 282686290227528056}
   - component: {fileID: 1896448219689560691}
   - component: {fileID: 4928066435801854693}
+  - component: {fileID: 5819935938545028496}
   m_Layer: 0
   m_Name: Statue 1
   m_TagString: Untagged
@@ -467,3 +484,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &5819935938545028496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091037317029981272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d5133b94ee8204787f23735b166f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RotateLeft90Interactable
+  turnDegrees: 90
+  puzzleManager: {fileID: 239335782994958450, guid: 6e47c33a38fae1f4a8ce6150791cb8df, type: 3}
