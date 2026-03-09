@@ -3132,7 +3132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &118471559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3162,10 +3162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3477,8 +3477,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 218}
+  m_SizeDelta: {x: 246.0952, y: 73.9012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &130094460
 MonoBehaviour:
@@ -3536,8 +3536,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -20732,14 +20732,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888091745}
-  - component: {fileID: 888091746}
   m_Layer: 0
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &888091745
 Transform:
   m_ObjectHideFlags: 0
@@ -20757,19 +20756,6 @@ Transform:
   - {fileID: 2128600347}
   m_Father: {fileID: 1652947255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888091746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888091744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aceaefc2ca71b2b44bc5418ea25a3229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  pauseMenu: {fileID: 888091744}
 --- !u!43 &891533813
 Mesh:
   m_ObjectHideFlags: 0
@@ -21320,7 +21306,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888091746}
+      - m_Target: {fileID: 1652947256}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
@@ -24185,7 +24171,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888091746}
+      - m_Target: {fileID: 1652947256}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -38129,7 +38115,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 888091746}
+      - m_Target: {fileID: 1652947256}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Menu
         m_Mode: 1
@@ -38191,6 +38177,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3875680201379335051, guid: adf5bea00d6ef77469ac8113da9d3669, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1652947256}
     - target: {fileID: 3875680201379335051, guid: adf5bea00d6ef77469ac8113da9d3669, type: 3}
       propertyPath: groundedPlayer
       value: 1
@@ -38929,6 +38919,7 @@ GameObject:
   - component: {fileID: 1652947254}
   - component: {fileID: 1652947253}
   - component: {fileID: 1652947252}
+  - component: {fileID: 1652947256}
   m_Layer: 5
   m_Name: CanvasPauseMenu
   m_TagString: Untagged
@@ -39019,6 +39010,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1652947256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652947251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aceaefc2ca71b2b44bc5418ea25a3229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  pauseMenu: {fileID: 888091744}
+  gamePaused: 0
 --- !u!1 &1675239822
 GameObject:
   m_ObjectHideFlags: 0
@@ -41817,7 +41822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1827055921
 RectTransform:
   m_ObjectHideFlags: 0
