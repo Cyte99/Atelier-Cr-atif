@@ -140,12 +140,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4439487982867240056}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: jumpHeight
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1602154696115329597}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: playerSpeed
-      value: 5
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: gravityValue
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: mouseSensitivity
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: interactAction
