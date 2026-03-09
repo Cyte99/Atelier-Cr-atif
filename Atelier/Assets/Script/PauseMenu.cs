@@ -33,10 +33,13 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }
