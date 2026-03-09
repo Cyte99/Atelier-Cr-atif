@@ -7,7 +7,7 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private List<PillarEye> pillars;
     [SerializeField] private GameObject door;
     private bool doorOpened = false;
-
+    public bool IsPuzzleSolved => doorOpened;
     public void CheckPuzzle()
     {
         
@@ -24,7 +24,7 @@ public class PuzzleManager : MonoBehaviour
             Debug.Log("all pillar alligned");
         }
 
-        //OpenDoor();
+        OpenDoor();
     }
 
     private void OpenDoor()

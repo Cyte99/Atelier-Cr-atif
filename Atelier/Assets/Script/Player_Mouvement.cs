@@ -10,6 +10,7 @@ public class Player_Mouvement : MonoBehaviour
     [Header("References")]
     public CharacterController controller;
     [SerializeField] private Transform headPos;
+    //[SerializeField] PauseMenu pauseMenu;
 
     [Header("Input Actions")]
     public InputActionReference moveAction;
@@ -17,14 +18,14 @@ public class Player_Mouvement : MonoBehaviour
     public InputActionReference interactAction;
 
     [Header("Interact Settings")]
-    [SerializeField] private Transform interactOrigin;     
+    [SerializeField] private Transform interactOrigin;
     [SerializeField] private float interactDistance = 2.5f;
-    [SerializeField] private LayerMask interactMask = ~0;  
+    [SerializeField] private LayerMask interactMask = ~0;
 
     [Header("Look Settings")]
-    [SerializeField] private float mouseSensitivity = 0.08f; 
+    [SerializeField] private float mouseSensitivity = 0.08f;
     [SerializeField] private float upDownRange = 80f;
-    [SerializeField] private float mouseDeadzone = 0.02f; 
+    [SerializeField] private float mouseDeadzone = 0.02f;
 
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -126,6 +127,9 @@ public class Player_Mouvement : MonoBehaviour
 
     private void HandleRotation()
     {
+        //if (pauseMenu != null && pauseMenu.gamePaused)
+        //    return;
+
         Vector2 delta = Mouse.current != null ? Mouse.current.delta.ReadValue() : Vector2.zero;
 
         if (Mathf.Abs(delta.x) < mouseDeadzone) delta.x = 0f;

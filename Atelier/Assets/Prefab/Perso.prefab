@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980706532888945317}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Perso
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 4163737437611224366, guid: da2b3b3cd4d7e7543b18f69e47b67a61, type: 3}
       propertyPath: m_Name
       value: HeadPos
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163737437611224366, guid: da2b3b3cd4d7e7543b18f69e47b67a61, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -123,6 +127,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chevalier
       objectReference: {fileID: 0}
+    - target: {fileID: 3789326266671121453, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789326266671121453, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: headPos
       value: 
@@ -134,6 +146,22 @@ PrefabInstance:
     - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
       propertyPath: playerSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: interactAction
+      value: 
+      objectReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: interactOrigin
+      value: 
+      objectReference: {fileID: 4439487982867240056}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: interactDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630761319743184154, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: mouseSensitivity
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -172,7 +200,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3519328072673058089, guid: 55b2344e905645c4d8657852f14e1fbe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
