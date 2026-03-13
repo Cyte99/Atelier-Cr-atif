@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndZoneTrigger : MonoBehaviour
 {
@@ -22,14 +23,29 @@ public class EndZoneTrigger : MonoBehaviour
 
         triggered = true;
 
-        Debug.Log("MISSION COMPLETE");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
 
-        if (endScreen != null)
-            endScreen.SetActive(true);
+        // If there is another level, load it
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("Loading next level...");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.Log("MISSION COMPLETE");
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            if (endScreen != null)
+                endScreen.SetActive(true);
 
-        Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Time.timeScale = 0f;
+            
+        }
+
     }
 }
