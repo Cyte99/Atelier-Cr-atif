@@ -129,6 +129,8 @@ public class Player_Mouvement : MonoBehaviour
         else
             animController.SetBool("isWalking", false);
 
+
+
     }
 
     private void HandleRotation()
