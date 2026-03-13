@@ -10,6 +10,7 @@ public class Player_Mouvement : MonoBehaviour
     [Header("References")]
     public CharacterController controller;
     [SerializeField] private Transform headPos;
+    [SerializeField] private Animator animController;
 
     [Header("Input Actions")]
     public InputActionReference moveAction;
@@ -122,6 +123,12 @@ public class Player_Mouvement : MonoBehaviour
 
         Vector3 finalMove = move + Vector3.up * playerVelocity.y;
         controller.Move(finalMove * Time.deltaTime);
+
+        if (input.y > 0)
+            animController.SetBool("isWalking", true);
+        else
+            animController.SetBool("isWalking", false);
+
     }
 
     private void HandleRotation()
