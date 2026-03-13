@@ -10,11 +10,10 @@ public class Player_Mouvement : MonoBehaviour
     [Header("References")]
     public CharacterController controller;
     [SerializeField] private Transform headPos;
-<<<<<<< HEAD
-    //[SerializeField] PauseMenu pauseMenu;
-=======
+
     [SerializeField] PauseMenu pauseMenu;
->>>>>>> parent of 100843b (Revert "Merge branch 'main' into Programmation")
+
+
 
     [Header("Input Actions")]
     public InputActionReference moveAction;
@@ -131,13 +130,8 @@ public class Player_Mouvement : MonoBehaviour
 
     private void HandleRotation()
     {
-<<<<<<< HEAD
-        //if (pauseMenu != null && pauseMenu.gamePaused)
-        //    return;
-=======
-        if (pauseMenu.gamePaused)
+        if (pauseMenu != null && pauseMenu.gamePaused)
             return;
->>>>>>> parent of 100843b (Revert "Merge branch 'main' into Programmation")
 
         Vector2 delta = Mouse.current != null ? Mouse.current.delta.ReadValue() : Vector2.zero;
 
