@@ -26,6 +26,7 @@ public class Player_Mouvement : MonoBehaviour
     [SerializeField] private LayerMask interactMask = ~0;
 
     [Header("Look Settings")]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private float mouseSensitivity = 0.08f;
     [SerializeField] private float upDownRange = 80f;
     [SerializeField] private float mouseDeadzone = 0.02f;
@@ -147,18 +148,36 @@ public class Player_Mouvement : MonoBehaviour
     }
 
     private void TryInteract()
-    {
-        Transform origin = interactOrigin != null ? interactOrigin : headPos;
-        if (origin == null) return;
+{
+    Camera cam = mainCamera != null ? mainCamera : Camera.main;
 
-        if (Physics.Raycast(origin.position, origin.forward, out RaycastHit hit,
-                interactDistance, interactMask, QueryTriggerInteraction.Ignore))
+    if (cam == null)
+    {
+        Debug.LogError("No camera assigned to mainCamera, and no Camera tagged MainCamera found.");
+        return;
+    }
+
+    Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+    Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.green, 1f);
+
+    if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask, QueryTriggerInteraction.Ignore))
+    {
+        Debug.Log("Hit: " + hit.collider.name);
+
+        IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+        if (interactable != null)
         {
-            IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-            if (interactable != null)
-            {
-                interactable.Interact(this);
-            }
+            interactable.Interact(this);
+        }
+        else
+        {
+            Debug.Log("Hit object is not interactable.");
         }
     }
+    else
+    {
+        Debug.Log("Nothing hit by interact ray.");
+    }
+}
 }

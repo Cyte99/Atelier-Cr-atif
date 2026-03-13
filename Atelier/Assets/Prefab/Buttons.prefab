@@ -249,7 +249,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2287
+  m_VersionIndex: 2305
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8353e4f50a03e9140981f07b30854958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
-  buttonID: 3
+  buttonID: 2
   buttonManager: {fileID: 2293849781407016380}
 --- !u!1 &3538659335736557237
 GameObject:
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2287
+  m_VersionIndex: 2305
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2287
+  m_VersionIndex: 2305
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8353e4f50a03e9140981f07b30854958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
-  buttonID: 1
+  buttonID: 3
   buttonManager: {fileID: 2293849781407016380}
 --- !u!1 &8482725807907110136
 GameObject:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2287
+  m_VersionIndex: 2305
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1642,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8353e4f50a03e9140981f07b30854958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleButton
-  buttonID: 2
+  buttonID: 1
   buttonManager: {fileID: 2293849781407016380}
 --- !u!1001 &6488985951733561443
 PrefabInstance:
