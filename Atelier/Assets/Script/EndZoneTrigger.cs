@@ -5,6 +5,7 @@ public class EndZoneTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject endScreen;
     [SerializeField] private PuzzleManager puzzleManager;
+    [SerializeField] private ButtonSequenceManager buttonManager;
 
     private bool triggered = false;
 
@@ -14,12 +15,6 @@ public class EndZoneTrigger : MonoBehaviour
 
         if (!other.CompareTag("Player"))
             return;
-
-        if (puzzleManager == null || !puzzleManager.IsPuzzleSolved)
-        {
-            Debug.Log("Puzzle not completed yet.");
-            return;
-        }
 
         triggered = true;
 
