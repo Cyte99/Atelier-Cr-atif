@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class RotateLeft90Interactable : MonoBehaviour, IInteractable
@@ -11,6 +12,8 @@ public class RotateLeft90Interactable : MonoBehaviour, IInteractable
 
         //re-check after rotating
         if (puzzleManager != null)
+        {
             puzzleManager.CheckPuzzle();
+        }
     }
 }

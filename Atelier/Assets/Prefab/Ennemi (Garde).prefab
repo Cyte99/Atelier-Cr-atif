@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4472206868549140898}
   - component: {fileID: 2042509774653037115}
   - component: {fileID: -6070503099115344973}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ennemi (Garde)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -129,10 +129,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   agent: {fileID: -6070503099115344973}
   Chevalier: {fileID: 0}
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pointReachDistance: 1
+  waitAtPoint: 2
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  patrolPoints: []
+    m_Bits: 193
+  viewDistance: 10
+  halfAngle: 45
+  eyeHeight: 1.6
+  loseSightTime: 1.5
+  killDistance: 1.5
+  missionFailedPanel: {fileID: 0}
 --- !u!195 &-6070503099115344973
 NavMeshAgent:
   m_ObjectHideFlags: 0

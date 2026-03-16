@@ -12,9 +12,8 @@ public class PillarEye : MonoBehaviour
             return false;
 
         Vector3 dirToCenter = (centerPoint.position - eyeTransform.position).normalized;
-
-        float angle = Vector3.Angle(eyeTransform.forward, dirToCenter);
-
+        float angle = Vector3.Angle(-eyeTransform.forward, dirToCenter);
+        print(angle <= alignmentThreshold);
         return angle <= alignmentThreshold;
     }
 }

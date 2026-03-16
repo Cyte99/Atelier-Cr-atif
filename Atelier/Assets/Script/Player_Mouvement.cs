@@ -10,7 +10,11 @@ public class Player_Mouvement : MonoBehaviour
     [Header("References")]
     public CharacterController controller;
     [SerializeField] private Transform headPos;
+    [SerializeField] private Animator animController;
+
     [SerializeField] PauseMenu pauseMenu;
+
+
 
     [Header("Input Actions")]
     public InputActionReference moveAction;
@@ -23,6 +27,7 @@ public class Player_Mouvement : MonoBehaviour
     [SerializeField] private LayerMask interactMask = ~0;
 
     [Header("Look Settings")]
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private float mouseSensitivity = 0.08f;
     [SerializeField] private float upDownRange = 80f;
     [SerializeField] private float mouseDeadzone = 0.02f;
@@ -100,10 +105,16 @@ public class Player_Mouvement : MonoBehaviour
         groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && playerVelocity.y < 0f)
+        {
             playerVelocity.y = -2f;
+            animController.SetBool("isJumping", false);
+        }
 
         if (groundedPlayer && jumpAction.action.WasPressedThisFrame())
+        {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
+            animController.SetBool("isJumping", true);
+        }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
 
@@ -123,11 +134,35 @@ public class Player_Mouvement : MonoBehaviour
 
         Vector3 finalMove = move + Vector3.up * playerVelocity.y;
         controller.Move(finalMove * Time.deltaTime);
+
+        // WALK FORWARD
+        if (input.y > 0)
+            animController.SetBool("isWalking", true);
+        else
+            animController.SetBool("isWalking", false);
+
+        // WALK BACKWARD
+        if (input.y < 0)
+            animController.SetBool("IsWalkingBackward", true);
+        else
+            animController.SetBool("IsWalkingBackward", false);
+
+        // STRAFE RIGHT
+        if (input.x > 0)
+            animController.SetBool("IsRightStrafing", true);
+        else
+            animController.SetBool("IsRightStrafing", false);
+
+        // STRAFE LEFT
+        if (input.x < 0)
+            animController.SetBool("IsLeftStrafing", true);
+        else
+            animController.SetBool("IsLeftStrafing", false);
     }
 
     private void HandleRotation()
     {
-        if (pauseMenu.gamePaused)
+        if (pauseMenu != null && pauseMenu.gamePaused)
             return;
 
         Vector2 delta = Mouse.current != null ? Mouse.current.delta.ReadValue() : Vector2.zero;
@@ -144,18 +179,36 @@ public class Player_Mouvement : MonoBehaviour
     }
 
     private void TryInteract()
-    {
-        Transform origin = interactOrigin != null ? interactOrigin : headPos;
-        if (origin == null) return;
+{
+    Camera cam = mainCamera != null ? mainCamera : Camera.main;
 
-        if (Physics.Raycast(origin.position, origin.forward, out RaycastHit hit,
-                interactDistance, interactMask, QueryTriggerInteraction.Ignore))
+    if (cam == null)
+    {
+        Debug.LogError("No camera assigned to mainCamera, and no Camera tagged MainCamera found.");
+        return;
+    }
+
+    Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+    Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.green, 1f);
+
+    if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask, QueryTriggerInteraction.Ignore))
+    {
+        Debug.Log("Hit: " + hit.collider.name);
+
+        IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+        if (interactable != null)
         {
-            IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-            if (interactable != null)
-            {
-                interactable.Interact(this);
-            }
+            interactable.Interact(this);
+        }
+        else
+        {
+            Debug.Log("Hit object is not interactable.");
         }
     }
+    else
+    {
+        Debug.Log("Nothing hit by interact ray.");
+    }
+}
 }
