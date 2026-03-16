@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndZoneTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject endScreen;
     [SerializeField] private PuzzleManager puzzleManager;
+    [SerializeField] private ButtonSequenceManager buttonManager;
 
     private bool triggered = false;
 
@@ -14,22 +16,31 @@ public class EndZoneTrigger : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        if (puzzleManager == null || !puzzleManager.IsPuzzleSolved)
-        {
-            Debug.Log("Puzzle not completed yet.");
-            return;
-        }
-
         triggered = true;
 
-        Debug.Log("MISSION COMPLETE");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
 
-        if (endScreen != null)
-            endScreen.SetActive(true);
+        // If there is another level, load it
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log("Loading next level...");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.Log("MISSION COMPLETE");
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            if (endScreen != null)
+                endScreen.SetActive(true);
 
-        Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Time.timeScale = 0f;
+            
+        }
+
     }
 }
