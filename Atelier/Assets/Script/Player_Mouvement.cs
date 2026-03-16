@@ -10,7 +10,6 @@ public class Player_Mouvement : MonoBehaviour
     [Header("References")]
     public CharacterController controller;
     [SerializeField] private Transform headPos;
-    [SerializeField] private Animator animController;
 
     [SerializeField] PauseMenu pauseMenu;
 
@@ -105,16 +104,10 @@ public class Player_Mouvement : MonoBehaviour
         groundedPlayer = controller.isGrounded;
 
         if (groundedPlayer && playerVelocity.y < 0f)
-        {
             playerVelocity.y = -2f;
-            animController.SetBool("isJumping", false);
-        }
 
         if (groundedPlayer && jumpAction.action.WasPressedThisFrame())
-        {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
-            animController.SetBool("isJumping", true);
-        }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
 
@@ -134,30 +127,6 @@ public class Player_Mouvement : MonoBehaviour
 
         Vector3 finalMove = move + Vector3.up * playerVelocity.y;
         controller.Move(finalMove * Time.deltaTime);
-
-        // WALK FORWARD
-        if (input.y > 0)
-            animController.SetBool("isWalking", true);
-        else
-            animController.SetBool("isWalking", false);
-
-        // WALK BACKWARD
-        if (input.y < 0)
-            animController.SetBool("IsWalkingBackward", true);
-        else
-            animController.SetBool("IsWalkingBackward", false);
-
-        // STRAFE RIGHT
-        if (input.x > 0)
-            animController.SetBool("IsRightStrafing", true);
-        else
-            animController.SetBool("IsRightStrafing", false);
-
-        // STRAFE LEFT
-        if (input.x < 0)
-            animController.SetBool("IsLeftStrafing", true);
-        else
-            animController.SetBool("IsLeftStrafing", false);
     }
 
     private void HandleRotation()
