@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Patrolllll : MonoBehaviour
 {
@@ -145,7 +146,7 @@ public class Patrolllll : MonoBehaviour
 
         agent.isStopped = true;
 
-        Time.timeScale = 0f; // freeze game
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }
 
