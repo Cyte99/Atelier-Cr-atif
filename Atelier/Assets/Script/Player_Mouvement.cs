@@ -12,6 +12,9 @@ public class Player_Mouvement : MonoBehaviour
     [SerializeField] private Transform headPos;
     [SerializeField] private Animator animController;
 
+    [SerializeField] private AudioClip[] footstepSounds;
+    [SerializeField] private AudioSource audioSource;
+
     [SerializeField] PauseMenu pauseMenu;
 
 
@@ -179,36 +182,49 @@ public class Player_Mouvement : MonoBehaviour
     }
 
     private void TryInteract()
-{
-    Camera cam = mainCamera != null ? mainCamera : Camera.main;
-
-    if (cam == null)
     {
-        Debug.LogError("No camera assigned to mainCamera, and no Camera tagged MainCamera found.");
-        return;
-    }
+        Camera cam = mainCamera != null ? mainCamera : Camera.main;
 
-    Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-    Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.green, 1f);
-
-    if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask, QueryTriggerInteraction.Ignore))
-    {
-        Debug.Log("Hit: " + hit.collider.name);
-
-        IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-        if (interactable != null)
+        if (cam == null)
         {
-            interactable.Interact(this);
+            Debug.LogError("No camera assigned to mainCamera, and no Camera tagged MainCamera found.");
+            return;
+        }
+
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.green, 1f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+
+            IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact(this);
+            }
+            else
+            {
+                Debug.Log("Hit object is not interactable.");
+            }
         }
         else
         {
-            Debug.Log("Hit object is not interactable.");
+            Debug.Log("Nothing hit by interact ray.");
         }
     }
-    else
+
+    public void PlayFootstep()
     {
-        Debug.Log("Nothing hit by interact ray.");
+        if (audioSource == null || footstepSounds.Length == 0)
+            return;
+
+        // éviter les sons dans le vide
+        if (!groundedPlayer || controller.velocity.magnitude < 0.1f)
+            return;
+
+        int index = Random.Range(0, footstepSounds.Length);
+        audioSource.PlayOneShot(footstepSounds[index]);
     }
-}
 }
