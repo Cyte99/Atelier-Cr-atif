@@ -143,10 +143,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 193
-  viewDistance: 10
+  viewDistance: 20
   halfAngle: 45
   eyeHeight: 1.6
-  loseSightTime: 1.5
+  loseSightTime: 5
   killDistance: 1.5
   missionFailedPanel: {fileID: 0}
 --- !u!195 &-6070503099115344973
