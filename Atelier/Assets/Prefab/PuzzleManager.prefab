@@ -50,3 +50,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   door: {fileID: 0}
+  puzzleSolvedSound: {fileID: 8300000, guid: 6ca9634dc6db3a64eb48bb792df517b5, type: 3}
+  volume: 0.5
