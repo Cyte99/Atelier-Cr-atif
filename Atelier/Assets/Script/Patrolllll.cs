@@ -20,7 +20,7 @@ public class Patrolllll : MonoBehaviour
     [SerializeField] private float viewDistance = 10f;
     [SerializeField] private float halfAngle = 45f;
     [SerializeField] private float eyeHeight = 1.6f;
-    [SerializeField] private float loseSightTime = 1.5f;   // time before returning to patrol
+    [SerializeField] private float loseSightTime = 1.5f;
 
     private bool chasing = false;
     private float lastSeenTime = -999f;
@@ -31,15 +31,44 @@ public class Patrolllll : MonoBehaviour
     [SerializeField] private GameObject missionFailedPanel;
     private bool missionFailed = false;
 
+    [Header("Sons")]
+    [SerializeField] private AudioClip chaseSound;
+    [SerializeField][Range(0f, 1f)] private float chaseVolume = 1f;
+    [SerializeField] private AudioClip missionFailedSound;
+    [SerializeField][Range(0f, 1f)] private float missionFailedVolume = 1f;
+
+    private AudioSource audioSource;
 
     private void Awake()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.loop = true;
+        audioSource.volume = chaseVolume;
+        audioSource.clip = chaseSound;
     }
 
     private void Start()
     {
         StartCoroutine(BrainLoop());
+    }
+
+    private void UpdateChaseSound(bool isChasing)
+    {
+        if (isChasing)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+                audioSource.Stop();
+        }
     }
 
     IEnumerator BrainLoop()
@@ -56,6 +85,8 @@ public class Patrolllll : MonoBehaviour
 
             if (chasing)
             {
+                UpdateChaseSound(true);
+
                 if (Chevalier != null)
                 {
                     agent.SetDestination(Chevalier.position);
@@ -70,12 +101,15 @@ public class Patrolllll : MonoBehaviour
                 if (Time.time - lastSeenTime > loseSightTime)
                 {
                     chasing = false;
+                    UpdateChaseSound(false);
                 }
 
                 yield return null;
             }
             else
             {
+                UpdateChaseSound(false);
+
                 if (patrolPoints == null || patrolPoints.Count == 0)
                 {
                     yield return null;
@@ -113,20 +147,16 @@ public class Patrolllll : MonoBehaviour
         Vector3 target = Chevalier.position + Vector3.up * 1.0f;
         Vector3 dir = (target - origin).normalized;
 
-        // Forward based on movement direction
         Vector3 forward = agent.desiredVelocity.sqrMagnitude > 0.01f
             ? agent.desiredVelocity.normalized
             : transform.forward;
 
-        // FOV cone check
         float angle = Vector3.Angle(forward, dir);
         if (angle > halfAngle) return false;
 
-        // Debug rays 
         Debug.DrawRay(origin, forward * 2f, Color.cyan);
         Debug.DrawRay(origin, dir * viewDistance, Color.yellow);
 
-        // Line of sight check
         if (Physics.Raycast(origin, dir, out RaycastHit hit, viewDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
             return hit.transform == Chevalier || hit.transform.IsChildOf(Chevalier);
@@ -138,7 +168,6 @@ public class Patrolllll : MonoBehaviour
     private void TriggerMissionFailed()
     {
         missionFailed = true;
-
         Debug.Log("MISSION FAILED");
 
         if (missionFailedPanel != null)
@@ -146,7 +175,22 @@ public class Patrolllll : MonoBehaviour
 
         agent.isStopped = true;
 
+        StartCoroutine(PlaySoundThenReload());
+    }
+
+    private IEnumerator PlaySoundThenReload()
+    {
+        // Arrête le son de chasse
+        audioSource.loop = false;
+        audioSource.Stop();
+
+        // Joue le son mission failed
+        if (missionFailedSound != null)
+        {
+            audioSource.PlayOneShot(missionFailedSound, missionFailedVolume);
+            yield return new WaitForSeconds(missionFailedSound.length);
+        }
+
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }
-

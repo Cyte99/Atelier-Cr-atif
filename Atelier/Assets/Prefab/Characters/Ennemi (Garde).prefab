@@ -149,6 +149,10 @@ MonoBehaviour:
   loseSightTime: 5
   killDistance: 1.5
   missionFailedPanel: {fileID: 0}
+  chaseSound: {fileID: 8300000, guid: e91243e211e0b9e419233d479666756b, type: 3}
+  chaseVolume: 0.2
+  missionFailedSound: {fileID: 8300000, guid: 474bac5e016017f4fa8c87f15a8f76f0, type: 3}
+  missionFailedVolume: 0.2
 --- !u!195 &-6070503099115344973
 NavMeshAgent:
   m_ObjectHideFlags: 0
