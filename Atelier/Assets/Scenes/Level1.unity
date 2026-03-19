@@ -23326,34 +23326,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194580591072152838, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5318025108249662873, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -350
-      objectReference: {fileID: 0}
-    - target: {fileID: 8050172519116053939, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
-      propertyPath: m_enableVertexGradient
+    - target: {fileID: 4597203170086393089, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9096967166671577720, guid: 4ae751e2fa165d44ab0dd77954b53f99, type: 3}
