@@ -7516,6 +7516,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2050122392}
+    - target: {fileID: 553627956312225677, guid: f2cf5cea4da231d4cac5cb8b2ccc6693, type: 3}
+      propertyPath: m_VersionIndex
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4237701594366707694, guid: f2cf5cea4da231d4cac5cb8b2ccc6693, type: 3}
       propertyPath: m_Name
       value: Water
