@@ -218,7 +218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7294579065856724270, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_VersionIndex
-      value: 2308
+      value: 2323
       objectReference: {fileID: 0}
     - target: {fileID: 7793869263193383514, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_Name
@@ -289,6 +289,10 @@ PrefabInstance:
     - target: {fileID: 6365137550902185448, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294579065856724270, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2320
       objectReference: {fileID: 0}
     - target: {fileID: 7793869263193383514, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_Name
@@ -433,6 +437,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7294579065856724270, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2320
+      objectReference: {fileID: 0}
     - target: {fileID: 7793869263193383514, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_Name
       value: Button
@@ -502,6 +510,10 @@ PrefabInstance:
     - target: {fileID: 6365137550902185448, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294579065856724270, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2320
       objectReference: {fileID: 0}
     - target: {fileID: 7793869263193383514, guid: cf2fc9bb287a27c41b0f856a34a5cd0d, type: 3}
       propertyPath: m_Name
