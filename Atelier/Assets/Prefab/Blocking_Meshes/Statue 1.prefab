@@ -562,3 +562,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RotateLeft90Interactable
   turnDegrees: 90
   puzzleManager: {fileID: 0}
+  rotateSound: {fileID: 8300000, guid: 9d8980bbe6f408243a4afcda5ed7948d, type: 3}
+  volume: 0.4
