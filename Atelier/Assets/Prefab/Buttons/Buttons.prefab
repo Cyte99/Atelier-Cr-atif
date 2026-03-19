@@ -360,6 +360,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5033025946950262239, guid: aa8565b28b7839040a4f42b08d13eb04, type: 3}
+      propertyPath: wrongSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f5cdb92cda7b6b943aac7c2d24ee5a4b, type: 3}
+    - target: {fileID: 5033025946950262239, guid: aa8565b28b7839040a4f42b08d13eb04, type: 3}
+      propertyPath: correctSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d739a6c2cbff1be4faa71b4c648dec88, type: 3}
+    - target: {fileID: 5033025946950262239, guid: aa8565b28b7839040a4f42b08d13eb04, type: 3}
+      propertyPath: puzzleSolvedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ca9634dc6db3a64eb48bb792df517b5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
