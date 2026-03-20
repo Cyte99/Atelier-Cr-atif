@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: interactMask.m_Bits
       value: 471
       objectReference: {fileID: 0}
+    - target: {fileID: 9221512715584890257, guid: de9e9a68e31612c489aec9140f1fc03f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
